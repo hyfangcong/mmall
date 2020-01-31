@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mmall.dao.ShippingMapper">
+  <resultMap id="BaseResultMap" type="com.mmall.pojo.Shipping">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="receiver_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="receiver_phone" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="receiver_mobile" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="receiver_province" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="receiver_city" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="receiver_district" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="receiver_address" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="receiver_zip" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mmall_shipping
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mmall.pojo.Shipping">
+    insert into mmall_shipping (id, user_id, receiver_name, 
+      receiver_phone, receiver_mobile, receiver_province, 
+      receiver_city, receiver_district, receiver_address, 
+      receiver_zip, create_time, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{receiverName,jdbcType=VARCHAR}, 
+      #{receiverPhone,jdbcType=VARCHAR}, #{receiverMobile,jdbcType=VARCHAR}, #{receiverProvince,jdbcType=VARCHAR}, 
+      #{receiverCity,jdbcType=VARCHAR}, #{receiverDistrict,jdbcType=VARCHAR}, #{receiverAddress,jdbcType=VARCHAR}, 
+      #{receiverZip,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.mmall.pojo.Shipping">
+    update mmall_shipping
+    set user_id = #{userId,jdbcType=INTEGER},
+      receiver_name = #{receiverName,jdbcType=VARCHAR},
+      receiver_phone = #{receiverPhone,jdbcType=VARCHAR},
+      receiver_mobile = #{receiverMobile,jdbcType=VARCHAR},
+      receiver_province = #{receiverProvince,jdbcType=VARCHAR},
+      receiver_city = #{receiverCity,jdbcType=VARCHAR},
+      receiver_district = #{receiverDistrict,jdbcType=VARCHAR},
+      receiver_address = #{receiverAddress,jdbcType=VARCHAR},
+      receiver_zip = #{receiverZip,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, user_id, receiver_name, receiver_phone, receiver_mobile, receiver_province, 
+    receiver_city, receiver_district, receiver_address, receiver_zip, create_time, update_time
+    from mmall_shipping
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, user_id, receiver_name, receiver_phone, receiver_mobile, receiver_province, 
+    receiver_city, receiver_district, receiver_address, receiver_zip, create_time, update_time
+    from mmall_shipping
+  </select>
+  <resultMap id="BaseResultMap" type="com.mmall.pojo.Shipping">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="receiver_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="receiver_phone" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="receiver_mobile" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="receiver_province" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="receiver_city" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="receiver_district" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="receiver_address" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="receiver_zip" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mmall_shipping
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mmall.pojo.Shipping">
+    insert into mmall_shipping (id, user_id, receiver_name, 
+      receiver_phone, receiver_mobile, receiver_province, 
+      receiver_city, receiver_district, receiver_address, 
+      receiver_zip, create_time, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{receiverName,jdbcType=VARCHAR}, 
+      #{receiverPhone,jdbcType=VARCHAR}, #{receiverMobile,jdbcType=VARCHAR}, #{receiverProvince,jdbcType=VARCHAR}, 
+      #{receiverCity,jdbcType=VARCHAR}, #{receiverDistrict,jdbcType=VARCHAR}, #{receiverAddress,jdbcType=VARCHAR}, 
+      #{receiverZip,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.mmall.pojo.Shipping">
+    update mmall_shipping
+    set user_id = #{userId,jdbcType=INTEGER},
+      receiver_name = #{receiverName,jdbcType=VARCHAR},
+      receiver_phone = #{receiverPhone,jdbcType=VARCHAR},
+      receiver_mobile = #{receiverMobile,jdbcType=VARCHAR},
+      receiver_province = #{receiverProvince,jdbcType=VARCHAR},
+      receiver_city = #{receiverCity,jdbcType=VARCHAR},
+      receiver_district = #{receiverDistrict,jdbcType=VARCHAR},
+      receiver_address = #{receiverAddress,jdbcType=VARCHAR},
+      receiver_zip = #{receiverZip,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, user_id, receiver_name, receiver_phone, receiver_mobile, receiver_province, 
+    receiver_city, receiver_district, receiver_address, receiver_zip, create_time, update_time
+    from mmall_shipping
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, user_id, receiver_name, receiver_phone, receiver_mobile, receiver_province, 
+    receiver_city, receiver_district, receiver_address, receiver_zip, create_time, update_time
+    from mmall_shipping
+  </select>
+</mapper>

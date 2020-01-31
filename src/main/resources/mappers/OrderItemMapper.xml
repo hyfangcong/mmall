@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mmall.dao.OrderItemMapper">
+  <resultMap id="BaseResultMap" type="com.mmall.pojo.OrderItem">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="order_no" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="product_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="product_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="product_image" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="current_unit_price" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="quantity" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="total_price" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mmall_order_item
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mmall.pojo.OrderItem">
+    insert into mmall_order_item (id, user_id, order_no, 
+      product_id, product_name, product_image, 
+      current_unit_price, quantity, total_price, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{orderNo,jdbcType=BIGINT}, 
+      #{productId,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, #{productImage,jdbcType=VARCHAR}, 
+      #{currentUnitPrice,jdbcType=DECIMAL}, #{quantity,jdbcType=INTEGER}, #{totalPrice,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.mmall.pojo.OrderItem">
+    update mmall_order_item
+    set user_id = #{userId,jdbcType=INTEGER},
+      order_no = #{orderNo,jdbcType=BIGINT},
+      product_id = #{productId,jdbcType=INTEGER},
+      product_name = #{productName,jdbcType=VARCHAR},
+      product_image = #{productImage,jdbcType=VARCHAR},
+      current_unit_price = #{currentUnitPrice,jdbcType=DECIMAL},
+      quantity = #{quantity,jdbcType=INTEGER},
+      total_price = #{totalPrice,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, user_id, order_no, product_id, product_name, product_image, current_unit_price, 
+    quantity, total_price, create_time, update_time
+    from mmall_order_item
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, user_id, order_no, product_id, product_name, product_image, current_unit_price, 
+    quantity, total_price, create_time, update_time
+    from mmall_order_item
+  </select>
+  <resultMap id="BaseResultMap" type="com.mmall.pojo.OrderItem">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="order_no" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="product_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="product_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="product_image" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="current_unit_price" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="quantity" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="total_price" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mmall_order_item
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mmall.pojo.OrderItem">
+    insert into mmall_order_item (id, user_id, order_no, 
+      product_id, product_name, product_image, 
+      current_unit_price, quantity, total_price, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{orderNo,jdbcType=BIGINT}, 
+      #{productId,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, #{productImage,jdbcType=VARCHAR}, 
+      #{currentUnitPrice,jdbcType=DECIMAL}, #{quantity,jdbcType=INTEGER}, #{totalPrice,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.mmall.pojo.OrderItem">
+    update mmall_order_item
+    set user_id = #{userId,jdbcType=INTEGER},
+      order_no = #{orderNo,jdbcType=BIGINT},
+      product_id = #{productId,jdbcType=INTEGER},
+      product_name = #{productName,jdbcType=VARCHAR},
+      product_image = #{productImage,jdbcType=VARCHAR},
+      current_unit_price = #{currentUnitPrice,jdbcType=DECIMAL},
+      quantity = #{quantity,jdbcType=INTEGER},
+      total_price = #{totalPrice,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, user_id, order_no, product_id, product_name, product_image, current_unit_price, 
+    quantity, total_price, create_time, update_time
+    from mmall_order_item
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, user_id, order_no, product_id, product_name, product_image, current_unit_price, 
+    quantity, total_price, create_time, update_time
+    from mmall_order_item
+  </select>
+  <resultMap id="BaseResultMap" type="com.mmall.pojo.OrderItem">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="order_no" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="product_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="product_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="product_image" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="current_unit_price" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="quantity" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="total_price" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mmall_order_item
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mmall.pojo.OrderItem">
+    insert into mmall_order_item (id, user_id, order_no, 
+      product_id, product_name, product_image, 
+      current_unit_price, quantity, total_price, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{orderNo,jdbcType=BIGINT}, 
+      #{productId,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, #{productImage,jdbcType=VARCHAR}, 
+      #{currentUnitPrice,jdbcType=DECIMAL}, #{quantity,jdbcType=INTEGER}, #{totalPrice,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.mmall.pojo.OrderItem">
+    update mmall_order_item
+    set user_id = #{userId,jdbcType=INTEGER},
+      order_no = #{orderNo,jdbcType=BIGINT},
+      product_id = #{productId,jdbcType=INTEGER},
+      product_name = #{productName,jdbcType=VARCHAR},
+      product_image = #{productImage,jdbcType=VARCHAR},
+      current_unit_price = #{currentUnitPrice,jdbcType=DECIMAL},
+      quantity = #{quantity,jdbcType=INTEGER},
+      total_price = #{totalPrice,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, user_id, order_no, product_id, product_name, product_image, current_unit_price, 
+    quantity, total_price, create_time, update_time
+    from mmall_order_item
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, user_id, order_no, product_id, product_name, product_image, current_unit_price, 
+    quantity, total_price, create_time, update_time
+    from mmall_order_item
+  </select>
+</mapper>

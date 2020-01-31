@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xsi:schemaLocation="
+  http://www.springframework.org/schema/context
+  http://www.springframework.org/schema/context/spring-context.xsd
+  http://www.springframework.org/schema/beans
+  http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://www.springframework.org/schema/tx
+  http://www.springframework.org/schema/tx/spring-tx.xsd
+  http://www.springframework.org/schema/jdbc
+  http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+  http://www.springframework.org/schema/cache
+  http://www.springframework.org/schema/cache/spring-cache-3.1.xsd
+  http://www.springframework.org/schema/aop
+  http://www.springframework.org/schema/aop/spring-aop.xsd
+  http://www.springframework.org/schema/util
+  http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <context:component-scan base-package="com.mmall"/>
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="order" value="2"/>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="locations">
+            <list>
+                <value>classpath:datasource.properties</value>
+            </list>
+        </property>
+        <property name="fileEncoding" value="utf-8"/>
+    </bean>
+    <bean id="datasource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${db.driverClassName}"/>
+        <property name="url" value="${db.url}"/>
+        <property name="username" value="${db.username}"/>
+        <property name="password" value="${db.password}"/>
+
+        <!--连接池启动时的初始值-->
+        <property name="initialSize" value="${db.initialSize}"/>
+        <!--连接池最大值-->
+        <property name="maxActive" value="${db.maxActive}"/>
+        <!--最大空闲值，当经过一个高峰时间后，连接池可以将一些不用的连接释放掉一部分，直到减少到maxIdle为止-->
+        <property name="maxIdle" value="${db.maxIdle}"/>
+        <!--最小空闲值，当空闲的连接数小于阈值时，连接池会预先申请一些连接，以免洪峰来临时来不及申请-->
+        <property name="minIdle" value="${db.minIdle}"/>
+        <!--最大建立连接等待时间，如果超过此时间，将收到异常，设置为-1表示无限制-->
+        <property name="maxWait" value="${db.maxWait}"/>
+        <property name="defaultAutoCommit" value="${db.defaultAutoCommit}"/>
+        <!--连接超时时间，默认为半小时-->
+        <property name="minEvictableIdleTimeMillis" value="${db.minEvictableIdleTimeMillis}"/>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="datasource"/>
+        <property name="mapperLocations" value="classpath*:mappers/*Mapper.xml"/>
+
+        <!--分页插件-->
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageHelper">
+                    <property name="properties">
+                        <value>dialect=mysql</value>
+                    </property>
+                </bean>
+            </array>
+        </property>
+    </bean>
+
+    <bean name="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.mmall.dao"/>
+    </bean>
+
+    <!--使用@Transction进行声明式事务管理需要声明下面这一行-->
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+
+    <!--事务管理-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="datasource"/>
+        <property name="rollbackOnCommitFailure" value="true"/>
+    </bean>
+
+
+</beans>

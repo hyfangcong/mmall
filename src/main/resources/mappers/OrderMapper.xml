@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mmall.dao.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.mmall.pojo.Order">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="order_no" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="shipping_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="payment" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="payment_type" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="postage" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="payment_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="send_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="end_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="close_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mmall_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mmall.pojo.Order">
+    insert into mmall_order (id, order_no, shipping_id, 
+      payment, payment_type, postage, 
+      status, payment_time, send_time, 
+      end_time, close_time, create_time, 
+      update_time)
+    values (#{id,jdbcType=INTEGER}, #{orderNo,jdbcType=BIGINT}, #{shippingId,jdbcType=INTEGER}, 
+      #{payment,jdbcType=DECIMAL}, #{paymentType,jdbcType=INTEGER}, #{postage,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{paymentTime,jdbcType=TIMESTAMP}, #{sendTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{closeTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.mmall.pojo.Order">
+    update mmall_order
+    set order_no = #{orderNo,jdbcType=BIGINT},
+      shipping_id = #{shippingId,jdbcType=INTEGER},
+      payment = #{payment,jdbcType=DECIMAL},
+      payment_type = #{paymentType,jdbcType=INTEGER},
+      postage = #{postage,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      payment_time = #{paymentTime,jdbcType=TIMESTAMP},
+      send_time = #{sendTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      close_time = #{closeTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, order_no, shipping_id, payment, payment_type, postage, status, payment_time, 
+    send_time, end_time, close_time, create_time, update_time
+    from mmall_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, order_no, shipping_id, payment, payment_type, postage, status, payment_time, 
+    send_time, end_time, close_time, create_time, update_time
+    from mmall_order
+  </select>
+  <resultMap id="BaseResultMap" type="com.mmall.pojo.Order">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="order_no" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="shipping_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="payment" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="payment_type" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="postage" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="payment_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="send_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="end_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="close_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mmall_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mmall.pojo.Order">
+    insert into mmall_order (id, order_no, shipping_id, 
+      payment, payment_type, postage, 
+      status, payment_time, send_time, 
+      end_time, close_time, create_time, 
+      update_time)
+    values (#{id,jdbcType=INTEGER}, #{orderNo,jdbcType=BIGINT}, #{shippingId,jdbcType=INTEGER}, 
+      #{payment,jdbcType=DECIMAL}, #{paymentType,jdbcType=INTEGER}, #{postage,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{paymentTime,jdbcType=TIMESTAMP}, #{sendTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{closeTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.mmall.pojo.Order">
+    update mmall_order
+    set order_no = #{orderNo,jdbcType=BIGINT},
+      shipping_id = #{shippingId,jdbcType=INTEGER},
+      payment = #{payment,jdbcType=DECIMAL},
+      payment_type = #{paymentType,jdbcType=INTEGER},
+      postage = #{postage,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      payment_time = #{paymentTime,jdbcType=TIMESTAMP},
+      send_time = #{sendTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      close_time = #{closeTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, order_no, shipping_id, payment, payment_type, postage, status, payment_time, 
+    send_time, end_time, close_time, create_time, update_time
+    from mmall_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, order_no, shipping_id, payment, payment_type, postage, status, payment_time, 
+    send_time, end_time, close_time, create_time, update_time
+    from mmall_order
+  </select>
+  <resultMap id="BaseResultMap" type="com.mmall.pojo.Order">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="order_no" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="shipping_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="payment" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="payment_type" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="postage" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="payment_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="send_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="end_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="close_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mmall_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mmall.pojo.Order">
+    insert into mmall_order (id, order_no, shipping_id, 
+      payment, payment_type, postage, 
+      status, payment_time, send_time, 
+      end_time, close_time, create_time, 
+      update_time)
+    values (#{id,jdbcType=INTEGER}, #{orderNo,jdbcType=BIGINT}, #{shippingId,jdbcType=INTEGER}, 
+      #{payment,jdbcType=DECIMAL}, #{paymentType,jdbcType=INTEGER}, #{postage,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{paymentTime,jdbcType=TIMESTAMP}, #{sendTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{closeTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.mmall.pojo.Order">
+    update mmall_order
+    set order_no = #{orderNo,jdbcType=BIGINT},
+      shipping_id = #{shippingId,jdbcType=INTEGER},
+      payment = #{payment,jdbcType=DECIMAL},
+      payment_type = #{paymentType,jdbcType=INTEGER},
+      postage = #{postage,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      payment_time = #{paymentTime,jdbcType=TIMESTAMP},
+      send_time = #{sendTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      close_time = #{closeTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, order_no, shipping_id, payment, payment_type, postage, status, payment_time, 
+    send_time, end_time, close_time, create_time, update_time
+    from mmall_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, order_no, shipping_id, payment, payment_type, postage, status, payment_time, 
+    send_time, end_time, close_time, create_time, update_time
+    from mmall_order
+  </select>
+</mapper>
