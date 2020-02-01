@@ -1,5 +1,6 @@
 package com.mmall.pojo;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class User {
@@ -19,11 +20,11 @@ public class User {
 
     private Integer role;
 
-    private Date createTime;
+    private Timestamp createTime;
 
-    private Date updateTime;
+    private Timestamp updateTime;
 
-    public User(Integer id, String username, String password, String email, String phone, String question, String answer, Integer role, Date createTime, Date updateTime) {
+    public User(Integer id, String username, String password, String email, String phone, String question, String answer, Integer role, Timestamp createTime, Timestamp updateTime) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -104,19 +105,20 @@ public class User {
         this.role = role;
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
 
-    public Date getUpdateTime() {
+    public Timestamp getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
+    }
+
+    public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
     }
 }

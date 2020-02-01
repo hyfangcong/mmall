@@ -49,6 +49,10 @@
         <property name="defaultAutoCommit" value="${db.defaultAutoCommit}"/>
         <!--连接超时时间，默认为半小时-->
         <property name="minEvictableIdleTimeMillis" value="${db.minEvictableIdleTimeMillis}"/>
+        <property name="validationQuery" value="select 1 from dual"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="testOnBorrow" value="false"/>
+        <property name="timeBetweenEvictionRunsMillis" value="300000"/>
     </bean>
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
