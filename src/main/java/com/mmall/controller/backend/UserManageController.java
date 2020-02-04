@@ -29,7 +29,7 @@ public class UserManageController {
         ServerResponse<User> response = userServiceImpl.login(username, password);
         if(response.isSuccess()){
             User user = response.getData();
-            if(user.getRole() == Const.Role.ROLE_AMDIN){
+            if(user.getRole() == Const.Role.ROLE_ADMIN){
                 //说明登陆的是管理员
                 session.setAttribute(Const.CURRENT_USER, user);
                 return response;

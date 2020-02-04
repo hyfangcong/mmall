@@ -17,6 +17,10 @@
       <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
     </constructor>
   </resultMap>
+
+  <sql id="base_column_list">
+    id, category_id, name, subtitle, main_image, sub_images, detail,price, stock, status, create_time, update_time
+  </sql>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from mmall_product
     where id = #{id,jdbcType=INTEGER}
@@ -48,6 +52,38 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmall.pojo.Product">
+    update mmall_product
+    <set>
+      <if test="name != null and name != ''">
+        name = #{name},
+      </if>
+      <if test="subtitle != null and subtitle != ''">
+        subtitle = #{subtitle},
+      </if>
+      <if test="mainImage != null and mainImage != ''">
+        main_image = {mainImage},
+      </if>
+      <if test="detail != null and detail != ''">
+        detail = {detail},
+      </if>
+      <if test="price != null and price != ''">
+        price = #{price},
+      </if>
+      <if test="stock != null and stock != ''">
+        stock = #{stock},
+      </if>
+      <if test="status != null and status != ''">
+        status = #{status},
+      </if>
+      <if test="updateTime != null and updateTime != ''">
+        update_time = #{updateTime},
+      </if>
+      where id = #{id}
+    </set>
+  </update>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select id, category_id, name, subtitle, main_image, sub_images, detail, price, stock, 
     status, create_time, update_time
@@ -58,5 +94,26 @@
     select id, category_id, name, subtitle, main_image, sub_images, detail, price, stock, 
     status, create_time, update_time
     from mmall_product
+  </select>
+
+  <select id="selectList" resultType="com.mmall.pojo.Product">
+    select
+    <include refid="base_column_list"/>
+    from mmall_product
+    order by id asc
+  </select>
+
+  <select id="selectByNameAndProductId" resultType="com.mmall.pojo.Product" parameterType="map">
+    select
+    <include refid="base_column_list"/>
+    from mmall_product
+    <where>
+      <if test="productName != null and productName != ''">
+        and name like #{productName}
+      </if>
+      <if test="productId != null and productId != ''">
+        and id = #{productId}
+      </if>
+    </where>
   </select>
 </mapper>

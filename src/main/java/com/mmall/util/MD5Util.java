@@ -1,9 +1,6 @@
 package com.mmall.util;
 
-import ch.qos.logback.classic.gaffer.PropertyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.support.PropertiesLoaderUtils;
-import org.springframework.stereotype.Component;
 
 import java.security.MessageDigest;
 
@@ -11,7 +8,6 @@ import java.security.MessageDigest;
  * @author: fangcong
  * @date: 2020/1/31
  */
-@Component
 public class MD5Util {
     @Autowired
     private PropertiesUtil propertiesUtil;
@@ -53,8 +49,7 @@ public class MD5Util {
     }
 
     public static String MD5EncodeUtf8(String origin){
-        PropertiesUtil propertiesUtil = new PropertiesUtil();
-        origin = origin + propertiesUtil.getPasswordSalt();
+        origin = origin + PropertiesUtil.getProperty("password.salt");
         return MD5Encoding(origin, "utf-8");
     }
 

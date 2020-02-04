@@ -12,6 +12,10 @@
       <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
     </constructor>
   </resultMap>
+
+  <sql id="base_column_list">
+    id, parent_id, name, status, sort_order, create_time, update_time
+  </sql>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from mmall_category
     where id = #{id,jdbcType=INTEGER}
@@ -34,13 +38,41 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select id, parent_id, name, status, sort_order, create_time, update_time
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmall.pojo.Category">
+    update mmall_category
+    <set>
+      <if test="parentId != null and parentId != ''">
+        parent_id = #{parentId},
+      </if>
+      <if test="name != null and name != ''">
+        name = #{name},
+      </if>
+      <if test="status != null and status != ''">
+        status = #{status},
+      </if>
+      <if test="sortOrder != null and sortOrder != ''">
+        sort_order = #{sortOrder},
+      </if>
+      <if test="updateTime != null and updateTime != ''">
+        update_time = #{updateTime},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+
+  <select id="selectCategoryChildrenByParentId" resultType="com.mmall.pojo.Category" parameterType="int">
+    select
+    <include refid="base_column_list"/>
     from mmall_category
-    where id = #{id,jdbcType=INTEGER}
+    where parent_id = #{parentId}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
-    select id, parent_id, name, status, sort_order, create_time, update_time
+
+  <select id="selectByPrimaryKey" resultType="com.mmall.pojo.Category" parameterType="int">
+    select
+    <include refid="base_column_list"/>
     from mmall_category
+    where id = #{id}
   </select>
+
 </mapper>
