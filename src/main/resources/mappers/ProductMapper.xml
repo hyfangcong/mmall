@@ -13,9 +13,24 @@
       <arg column="price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
       <arg column="stock" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" />
+      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" />
     </constructor>
+  </resultMap>
+
+  <resultMap id="base_result_map" type="com.mmall.pojo.Product">
+    <id column="id" property="id"></id>
+    <result column="category_id" property="categoryId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    <result column="name" property="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+    <result column="subtitle" property="subtitle" jdbcType="VARCHAR" javaType="java.lang.String" />
+    <result column="main_image" property="mainImage" jdbcType="VARCHAR" javaType="java.lang.String" />
+    <result column="sub_images" property="subImages" jdbcType="VARCHAR" javaType="java.lang.String" />
+    <result column="detail" property="detail" jdbcType="VARCHAR" javaType="java.lang.String" />
+    <result column="price"  property="price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+    <result column="stock" property="stock" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    <result column="status" property="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" />
   </resultMap>
 
   <sql id="base_column_list">
@@ -78,10 +93,10 @@
         status = #{status},
       </if>
       <if test="updateTime != null and updateTime != ''">
-        update_time = #{updateTime},
+        update_time = now(),
       </if>
-      where id = #{id}
     </set>
+    where id = #{id}
   </update>
 
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -115,5 +130,21 @@
         and id = #{productId}
       </if>
     </where>
+  </select>
+
+  <select id="selectByNameAndCategoryIds" resultMap="BaseResultMap" parameterType="map">
+    select
+    <include refid="base_column_list"/>
+    from mmall_product
+    where status = 1
+    <if test="productName != null and productName != ''">
+      and name like #{productName}
+    </if>
+    <if test="categoryList != null">
+      and category_id in 
+      <foreach collection="categoryList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </if>
   </select>
 </mapper>

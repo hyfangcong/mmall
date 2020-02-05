@@ -2,6 +2,7 @@ package com.mmall.vo;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * @author: fangcong

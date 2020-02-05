@@ -1,5 +1,7 @@
 package com.mmall.dao;
 
+import com.github.pagehelper.PageInfo;
+import com.mmall.common.ServerResponse;
 import com.mmall.pojo.Product;
 import org.apache.ibatis.annotations.Param;
 
@@ -21,4 +23,9 @@ public interface ProductMapper {
     List<Product> selectList();
 
     List<Product> selectByNameAndProductId(@Param("productName")String productName, @Param("productId")Integer productId);
+
+    List<Product> selectByNameAndCategoryIds(@Param("productName")String productName, @Param("categoryList")List<Integer> categoryList);
+
+    ServerResponse<PageInfo> getProductByKeywordCategory(String keyword, Integer categoryId, Integer pageNum,
+                                                         Integer pageSize, String orderBy);
 }
