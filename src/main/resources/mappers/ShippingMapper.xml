@@ -17,11 +17,16 @@
       <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
     </constructor>
   </resultMap>
+
+  <sql id="base_column_list">
+    id, user_id, receiver_name, receiver_phone, receiver_mobile, receiver_province, receiver_city, receiver_district, receiver_address,
+    receiver_zip, create_time, update_time
+  </sql>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from mmall_shipping
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.mmall.pojo.Shipping" >
+  <insert id="insert" parameterType="com.mmall.pojo.Shipping" useGeneratedKeys="true" keyProperty="id">
     insert into mmall_shipping (id, user_id, receiver_name, 
       receiver_phone, receiver_mobile, receiver_province, 
       receiver_city, receiver_district, receiver_address, 
@@ -58,5 +63,57 @@
     select id, user_id, receiver_name, receiver_phone, receiver_mobile, receiver_province, 
     receiver_city, receiver_district, receiver_address, receiver_zip, create_time, update_time
     from mmall_shipping
+  </select>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmall.pojo.Shipping">
+    update mmall_shipping
+    <set>
+      <if test="receiverName != null">
+        receiver_name = #{receiverName},
+      </if>
+      <if test="receiverPhone != null">
+        receiver_phone = #{receiverPhone},
+      </if>
+      <if test="receiverMobile != null">
+        receiver_mobile = #{receiverMobile},
+      </if>
+      <if test="receiverProvince != null and receiverProvince != ''">
+        receiver_province = #{receiverProvince},
+      </if>
+      <if test="receiverCity != null and receiverProvince != ''">
+        receiver_city = #{receiverCity},
+      </if>
+      <if test="receiverDistrict != null and receiverDistrict != ''">
+        receiver_district = #{receiverDistrict},
+      </if>
+      <if test="receiverAddress != null and receiverAddress != ''">
+        receiver_address = #{receiverAddress},
+      </if>
+      <if test="receiverZip != null and receiverZip != ''">
+        receiver_zip = #{receiverZip},
+      </if>
+      create_time = now(),
+      update_time = now()
+    </set>
+    where id = #{id} and user_id = #{userId}
+  </update>
+
+  <delete id="deleteByPrimaryKeyAndUserId" parameterType="map">
+    delete from mmall_shipping
+    where id = #{primaryKey} and user_id = #{userId}
+  </delete>
+
+  <select id="selectByShippingIdAndUserId" parameterType="map" resultType="com.mmall.pojo.Shipping">
+    select
+    <include refid="base_column_list"/>
+    from mmall_shipping
+    where id = #{shippingId} and user_id = #{userId}
+  </select>
+
+  <select id="selectByUserId" resultType="com.mmall.pojo.Shipping" parameterType="int">
+    select 
+    <include refid="base_column_list"/>
+    from mmall_shipping
+    where user_id = #{userId}
   </select>
 </mapper>
