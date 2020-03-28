@@ -2,11 +2,11 @@ package com.mmall.service.impl;
 
 import com.mmall.common.Const;
 import com.mmall.common.ServerResponse;
-import com.mmall.common.TokenCache;
 import com.mmall.dao.UserMapper;
 import com.mmall.pojo.User;
 import com.mmall.service.IUserService;
 import com.mmall.util.MD5Util;
+import com.mmall.util.RedisPoolUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -102,7 +102,7 @@ public class UserServiceImpl implements IUserService {
         if(resultCount > 0){
             //问题及答案是这个用户的，并且正确
             String forgetToken = UUID.randomUUID().toString();
-            TokenCache.setKey(TokenCache.TOKEN_PREFIX + username, forgetToken);
+            RedisPoolUtil.setex(Const.TOKEN_PREFIX + username, forgetToken, 60 * 30); //设置token的过期时间为30分钟
             return ServerResponse.createBySuccess(forgetToken);
         }
         return ServerResponse.createByErrorMsg("问题的答案错误");
@@ -116,7 +116,7 @@ public class UserServiceImpl implements IUserService {
         if(validResponse.isSuccess()){
             return ServerResponse.createByErrorMsg("用户不存在");
         }
-        String token = TokenCache.getKey(TokenCache.TOKEN_PREFIX + username);
+        String token = RedisPoolUtil.get(Const.TOKEN_PREFIX + username);
         if(StringUtils.isBlank(token)){
             return ServerResponse.createByErrorMsg("token无效或者过期");
         }
@@ -128,7 +128,7 @@ public class UserServiceImpl implements IUserService {
                 return ServerResponse.createBySuccessMsg("修改密码成功");
             }
         }else{
-            return ServerResponse.createByErrorMsg("token错误，请重新过去重置密码的token");
+            return ServerResponse.createByErrorMsg("token错误，请重新获取重置密码的token");
         }
         return ServerResponse.createByErrorMsg("修改密码失败");
     }

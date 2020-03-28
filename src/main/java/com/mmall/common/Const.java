@@ -12,6 +12,16 @@ public class Const {
     public static final String CURRENT_USER = "currentUser";
     public static final String USERNAME = "username";
     public static final String EMAIL = "email";
+    public static final String TOKEN_PREFIX = "token_";
+
+    public interface Cookie{
+        String  COOKIE_NAME = "happymmall";
+        String COOKIE_DOMAIN = "happymmall.com";
+    }
+
+    public interface Session{
+        Integer SESSION_EXPIRE_TIME = 60 * 30;
+    }
 
     public interface Cart{
         int CHECKED = 1; //已选中
